@@ -19,6 +19,7 @@ Käskluse `printf 'HEAD / HTTP/1.1\r\nHost: en.wikipedia.org\r\n\r\n' | nc en.wi
 - `printf` on nagu `echo`, aga veidi targem
 - `nc` = netcat - kirjutab ja loeb informatsiooni üle võrgu protokollide
 - `|` - toru (pipe) siin: võtab printf väljundi ja viib selle nc sisendiks
+
 See, et `printf` ja `nc`– ga saame HTTP vastuseid, on suur asi, kuna printf ei tea midagi võrgust (sisendi käsklus lihtsalt juhtub olema HTTP taotlus) 
 ja netcat ei tea midagi HTTP taotlustest (nc saadab teksti üle võrgu).
 
