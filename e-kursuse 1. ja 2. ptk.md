@@ -59,7 +59,7 @@ Toon välja selles peatükis kõlama jäänud märksõnad.
 - DNS serveritel on vahemälu, millel on oma kindel eluaeg (TTL ehk "time to live")
 - On kahte tüüpi üladomeene: ccTLD - country code Top Level Domain ja gTLD - generic Top Level Domain
 - DNS on nagu puu, mille oksad on erinevad serverid, mis vastutavad igaüks erinevate tippdomeenide eest
-- www.example.com on subdomeen example.com-ist ja test.www.example.com on subdomeen www.example.comist
+- www.example.com on subdomeen example.com-ile ja test.www.example.com on subdomeen www.example.com-ile
 - et DNS domeeni luua,  tuleb minna lehele: domains.google.com ja domeen osta
 - kui domeen ostetud, vajutan configure DNS, seejärel custom resourch records
 - IPv4 koosneb neljast 8-bitisest osast eraldatud punktidega (8 bitti on kümnendsüsteemis numbrid 0-255)
