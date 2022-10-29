@@ -1,9 +1,12 @@
 ## I. osa PING ja HTTP
 
+Enne kasutamist käivitan käsud:
+`sudo apt-get update && sudo apt-get install netcat-openbsd tcpdump traceroute mtr iputils-ping lsof -y`
+
 Kõigepealt proovimiseks mõned käsklused cloudshellis:
 - `ip addr show eth0`- töötas
 - `ip route show` - töötas
-- `ping -c3 8.8.8.8` - ei töötanud; cloudshellis vastus: "command not found" ja arvuti päris cmd-s töötas käsklus `ping -n 3 8.8.8.8`
+- `ping -c3 8.8.8.8` - töötas
 - `host -t aaaa google.com` - töötas (näitab IPv6 aadressi/aadresse)
 - `host -t mx udacity.com` - töötas
 - `tcpdump -n -c5 -i eth0 port 22` - vastus: "You don't have permission to capture on that device"
@@ -30,11 +33,12 @@ siis internet (mis koosneb ainult IP-st ja seetõttu nimetatakse ka pudelikaelak
 NC-ga portide kuulamine:
 - näide: ühes aknas `nc -l 3456`, teises `nc localhost 3456`
 - kui kirjutad ühes aknas, ilmub ka teises ja vastupidi, AGA ei kasuta HTTP-d! (toimetab kiht madalamal: tcp server)
-- ühenduse lõpetamiseks EOF `^D` (kirjas nc manualis) – NB! Mul toimis ainult `ctrl+Z`!
+- ühenduse lõpetamiseks EOF `^D` (kirjas nc manualis) – NB! Mul toimis `ctrl+Z` (pausile) ja `ctrl+C` (katkestab)!
 - kõrgeim number, millega port kuulata saab, on: 65535 (2. osas seletus)
 - madalaim number, millega port kuulata saab, on: 1024 (pordid alla 1024 on küll olemas, aga reserveeritud superkasutajatele)
 - NB! Kui luua kaks `nc -l 3456` nimelist porti, siis kolmas (`nc localhost 3456`) ühendub vaid viimase aknaga! Veateadet minul ei andnud (Linuxis peaks andma)!
-- `sudo lsof -i` töötas ainult siis, kui enne andsin käsu `sudo apt-get install lsof`!
+  Või kui üks ühenduspaar on loodud, siis kolmandas aknas `nc -l 3456` ei saanud tegelikult ühendust localhostiga. Veateadet ka ei andnud.
+- `sudo lsof -i` töötas ainult siis, kui enne andsin käsu `sudo apt-get install lsof`! (peale uuendatud alguskäsurida pole vajalik)
 - `printf 'HTTP/1.1 302 Moved\r\nLocation: https://www.eff.org/' | nc -l 2345` + `nc -l 2345` teises aknas ei andnud mul tulemusi… 
 (st panin Windows aknas oma IP aadressi:2345, aga lehekülge www.eff.org ei lmunud, kuigi näites ilmus)
 
@@ -46,7 +50,7 @@ Veebilehed ja serverid on tegelikult palju keerulisemad (sest haldavad mitmeid t
 Toon välja selles peatükis kõlama jäänud märksõnad.
 
 - `host` - lihtne käsureautiliit nimepäringute tegemiseks. Tavaliselt kasutatakse seda nimede teisendamisel IP aadressideks ja vastupidi. 
-- `ping google.com`: cloudshellis ei töötanud ("command not found"), arvuti cmd-s töötas ja IP-aadressiks näitas 172.217.16.206.
+- `ping google.com`: töötas
 - DNS tõlgib veebiaadressi (www.example.com) IP-aadressiks. 
 - DNSi teekond: domeeninimi – domeeni registreerimine/äratundmine – IP aadress
 - DNS on väga oluline veebilehtedele – kui see ei tööta, siis leht ei toimi
@@ -64,6 +68,8 @@ Toon välja selles peatükis kõlama jäänud märksõnad.
 - et DNS domeeni luua,  tuleb minna lehele: domains.google.com ja domeen osta
 - kui domeen ostetud, vajutan configure DNS, seejärel custom resourch records
 - IPv4 koosneb neljast 8-bitisest osast eraldatud punktidega (8 bitti on kümnendsüsteemis numbrid 0-255)
-- Miks portide suurim võimalik number on 65535? Sellepärast, et pordi bittide arv on piiratud: 16biti kasutatakse TCP pordi jaoks.
+- Miks portide suurim võimalik number on 65535? Sellepärast, et pordi bittide arv on piiratud: 16 bitti kasutatakse TCP pordi jaoks.
 
-<em>Tulemas ka 3., 4. ja 5. osa.</em>
+## 3. osa 
+
+
