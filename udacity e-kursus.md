@@ -160,8 +160,10 @@ Mis toimub, kui TCP ühendus avatakse?
 
 TCP- ühendus on töökindel, sest toimub kolmepoolne kinnitus ehk three-way handshake:  
 - klient saadab serverile ühenduse loomise soovi (järjekorranumbriga 1), server vastab (järjekorranumbriga 2 + ack järjekorranumbriga 1) ning saadab samuti ühenduse loomise soovi, mille klient kadudeta andmevahetuse korral vastusega kinnitab (järjekorranumbriga 1 + ack järjekorranumbriga 2). TCP sobib rakendustele, mis vajavad töökindlat andmeedastust, kus kiirus ei ole kriitiline.  
+-  
 Teine internetiprotokolli peal käitatav protokoll on kasutajadatagrammi protokoll (UDP), mis saadab pakette kuid ei kontrolli nende kohalejõudmist sihtkohta.  
-Seda kasutatakse näiteks multimeedia edastamisel ning mujal, kus tähtis on andmesidekiirus ja vähem tähtis selle kvaliteet (pakettide kadumisel neid uuesti ei saadeta).
+Seda kasutatakse näiteks multimeedia edastamisel ning mujal, kus tähtis on andmesidekiirus ja vähem tähtis selle kvaliteet (pakettide kadumisel neid uuesti ei saadeta).  
+
 6 põhilist TCP lippu:
 - [S] – *synchronize* ehk uue ühenduse loomine
 - [F] – *finish* ehk ühenduse lõpetamine
