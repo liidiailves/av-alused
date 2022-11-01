@@ -141,7 +141,7 @@ Katse 2: `sudo tcpdump -n port 53` ühes aknas, seejärel teises aknas `ping yah
 töötas; tcpdump näitab DNS requeste, mida arvuti saadab.
 
 Katse 3: `sudo tcpdump -n port 80` ühes aknas, teises aknas `printf ‘HEAD/http/1.1\r\nHost: example.net\r\n\r\n’ | nc example.net 80`:
-lihtsaim selle kirjeldamiseks kopeerida tulemus siia:
+lihtsaim selle kirjeldamiseks kopeerida tulemus siia:  
 -tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
 -listening on eth0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
 -18:04:12.579436 IP 172.17.0.4.56906 *(minu IP aadress)* > 93.184.216.34.80 *(example.net IP-aadress)*: Flags [S] *(selle tähendusest juttu allpool)*, seq 2589877733, win 64240, options [mss 1460,sackOK,TS val 2028034390 ecr 0,nop,wscale 7], length 0*(paljudel puhkudel length 0! mis on TCP üks oluline fakt)*
@@ -149,7 +149,7 @@ lihtsaim selle kirjeldamiseks kopeerida tulemus siia:
 -18:04:12.658851 IP 172.17.0.4.56906 > 93.184.216.34.80: Flags [.], ack 1, win 502, options [nop,nop,TS val 2028034470 ecr 546338418], length 0
 -18:04:12.658943 IP 172.17.0.4.56906 > 93.184.216.34.80: Flags [P.], seq 1:24, ack 1, win 502, options [nop,nop,TS val 2028034470 ecr 546338418], **length 23**: HTTP
 -18:04:12.737318 IP 93.184.216.34.80 > 172.17.0.4.56906: Flags [.], ack 24, win 128, options [nop,nop,TS val 546338497 ecr 2028034470], length 0
--18:04:12.737320 IP 93.184.216.34.80 > 172.17.0.4.56906: Flags [P.], seq 1:517, ack 24, win 128, options [nop,nop,TS val 546338497 ecr 2028034470], **length 516**: HTTP: HTTP/1.0 501 Not Implemented *(see tähistab server vastest kliendile! kuna sel on reaalne suurus!)*
+-18:04:12.737320 IP 93.184.216.34.80 > 172.17.0.4.56906: Flags [P.], seq 1:517, ack 24, win 128, options [nop,nop,TS val 546338497 ecr 2028034470], **length 516**: HTTP: HTTP/1.0 501 Not Implemented *(see tähistab serveri vastust kliendile! Kuna sel on reaalne suurus!)*
 -18:04:12.737347 IP 172.17.0.4.56906 > 93.184.216.34.80: Flags [.], ack 517, win 501, options [nop,nop,TS val 2028034548 ecr 546338497], length 0
 -18:04:12.737322 IP 93.184.216.34.80 > 172.17.0.4.56906: Flags [F.], seq 517, ack 24, win 128, options [nop,nop,TS val 546338497 ecr 2028034470], length 0
 -18:04:12.737934 IP 172.17.0.4.56906 > 93.184.216.34.80: Flags [F.], seq 24, ack 518, win 501, options [nop,nop,TS val 2028034549 ecr 546338497], length 0
