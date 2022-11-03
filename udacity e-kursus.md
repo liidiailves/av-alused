@@ -179,3 +179,55 @@ KATSE 4: `sudo tcpdump port 12345`, teises `nc udacity.com 12345`:
 Tegu väljamõeldud pordinumbriga. Esimeses aknas saatis järjest aeglasema intervalliga [S] lipuga päringuid, aga vastust ei saanud.
 TCP-l on mitmeid sisse-ehitatud ajavõtjaid, mis kontrollivad, et kui soovitud serveriga ühendust mõistliku aja jooksul ei saa, siis saadavad erroriteate (timeout) tagasi vastuseks.
 
+## 5. peatükk Võrguliiklus
+
+Võrgu kiirus ja mõned teisedki omadused mõjutavad kasutajate veebirakenduste kasutuskogemust.
+Reegel on, et kasutajad vihkavad ootamist. Aga andmete liigutamine ühest kohast teise võtab paratamatult aega. ka tulemüürid võivad tekitada jamasid sinu ja kasutaja vahel.  
+`traceroute google.com`- näitab arvu, mitmest ruuterist käib ühendus läbi ja ka mingil määral ühenduse teekonda ennast (kui pole varjatud).
+Minu arvuti cmd-s töötas käsklus `tracert google.com`.  
+
+`ping` käskluses *round trip time* – arvuti ei oska öelda, kui kiiresti jõudis sinupoolne "pakike" kohale teisele, aga oskab öelda, kui palju läks aega alates "pakikese" väljasaatmisest teiselt poolelt vastuse saamiseks.  
+*Round trip time* on oluline parameeter teada saamaks, kui lähedal teine asub.  
+
+`traceroute`käskluses TTL: teekonnal sihtkohta iga läbitud ruuter vähendab 1 võrra TTL-i. Kui TTL saab läbi enne, kui "pakike" kohale jõuab, siis ruuter, kus TTL lõppes, saadab välja erroriteate ja oma aadressi.  
+Trikk: kui panna TTL0, siis juba esimene ruuter annab teate, kui panna TTL1, siis teine ruuter jne. Nii järjest TTL aega suurendades on võimalik tegelikult välja selgitada ruuterite aadressid, kust "pakike" läbi käib.  
+
+Digitaalses andmetöötluses mõistetakse ribalaiuse all edastuskanali läbilaskevõimet ehk suurimat võimalikku või vajalikku andmeedastuskiirust kanalis, mõõtühik bitt sekundis (bit/s) või bait sekundis (B/s). Ribalaius on oluline siis, kui tegeled fotode ja/või videotega. 
+
+Latentsusaeg, latentsus või ka peitaeg on informaatikas mis tahes viibe või ooteaeg, mis pikendab tegelikku või eeldatavat reaktsiooniaega üle soovitava aja. Latentsusaeg on latentsuse kestus, sealhulgas süsteemi reaktsiooni hilistus. Näiteks:
+- aeg päringu sisestusest andmete võtuni;
+- paketi kulgemise aeg lähtekohast lõplikku sihtkohta.  
+
+Madal (väike) ribalaius ja kõrge (suur) latentsusaeg mõjuvad mõlemad tulemusena aeglasena.
+
+*bandwidth-delay product*:
+ ribalaius bit/s x latentsusaeg s = suurim andmehulk, mida süsteem võib ajaühikus töödelda (salvesada, edastada)  
+ 
+ Ülekoormuse puhul (kui liiga mitmed soovivad korraga saata infot kuhugi ja teepeale jäävate ruuterite kiirus pole piisavalt võimekas) TCP saadab uuesti „infopakid“, mis kohale ei jõudnud ning samuti hakkab välja saatma uusi „pakikesi“ aina aeglasemalt, et ülekoormust vähendada.  
+ 
+ Tulemüür on tarkvara või seade, mis turvakaalutlustel piirab ja reguleerib võrguliiklust arvutivõrgus või võrkude vahel vastavalt määratud reeglitele.  
+
+Tavaliselt kasutatakse tulemüüri interneti ja kohaliku kohtvõrgu vahel. Tulemüüri esmane otstarve on väljastpoolt juurdepääsu takistamine ressurssidele, millele pole sellist juurdepääsu ette nähtud. On ka tulemüüre mis piiravad väljuvat liiklust. Nendeks on sotsiaalsed (nt lastele mittesobivate veebilehtede asendamine veateatega) v poliitilised põhjused (on riike, kus on ära keelatud ligipääs Youtubele jne).  
+Siin kursusel on kasutusel termin "keskkast" (ingl middlebox) – kuhu kuulub tulemüür, aga ka nt sissetungi tuvastamise süsteem ja koormuse tasakaalustaja.  
+Üldiselt on tulemüür mingi organisatsiooni võrguturvalisusele suureks abiks. Aga võib tekitada probleeme rakenduste arendajatele.  
+
+Mida saab teha, et kontrollida, kas sinu lehe ja kasutajate vahel on tulemüür, mis takistab ligipääsu sinu lehele?
+-	kontrollida, kas kasutaja saab „pingida“ sinu IP-aadressi;
+-	kontrollida, kas kasutaja saab ühendust teise domeeniga samast serverist? (DNSi probleem)
+-	kontrollida, kas kasutaja saab kasutades käsklusi „host“ ja „dig“ pärida minu serveri kasutajanime DNS-iga ja saavad vastuseks tagasi mu IP-aadressi (DNSi probleem);
+-	kontrollida, ega kasutajad, kellel on probleem ühenduse saamisega, pole kõik samast riigist.  
+
+NAT toimib samuti kohaliku tulemüürina. 
+
+Proksi, mis töötab selleks määratud serveris või üldotstarbelises arvutis, võib käituda samuti justkui tulemüür, reageerides sissetulevatele pakettidele (näiteks ühenduse loomise taotlustele) ning on võimeline ka teatud liiklust blokeerima.
+
+Kuidas veebirakendus saab eristada, mitu kasutajat on ühe ip-aadressi taga?
+-	sisselogitud kasutajate loendamine
+-	töös olevate HTTP-küpsiste loendamine 
+
+
+
+
+
+
+
