@@ -1,6 +1,8 @@
 # Arvutivõrkude alused
 
-## I. osa PING ja HTTP
+## Udacity.com e-kursus "Networking for Web Developers"
+
+### I. osa PING ja HTTP
 
 Enne kasutamist käivitan käsud:
 `sudo apt-get update && sudo apt-get install netcat-openbsd tcpdump traceroute mtr iputils-ping lsof -y`
@@ -47,7 +49,7 @@ NC-ga portide kuulamine:
 NC on nagu lihtsustatud mudel programmist, mis kasutab võrku. 
 Veebilehed ja serverid on tegelikult palju keerulisemad (sest haldavad mitmeid taotlusi ja üheaegselt).
 
-## 2. osa Nimed ja aadressid
+### 2. osa Nimed ja aadressid
 
 Toon välja selles peatükis kõlama jäänud märksõnad.
 
@@ -72,7 +74,7 @@ Toon välja selles peatükis kõlama jäänud märksõnad.
 - IPv4 koosneb neljast 8-bitisest osast eraldatud punktidega (8 bitti on kümnendsüsteemis numbrid 0-255)
 - Miks portide suurim võimalik number on 65535? Sellepärast, et pordi bittide arv on piiratud: 16 bitti kasutatakse TCP pordi jaoks.
 
-## 3. osa Adresseerimine ja võrgud
+### 3. osa Adresseerimine ja võrgud
 
 Selle peatüki märksõnad on IPv4, selle jagunemine võrguosaks ja aadressiosaks, avalikud aadressid, privaatsed kohtvõrgud, NAT ja IPv6.
 
@@ -127,7 +129,7 @@ Sarnaselt IPv4 aadressi ülesehitusele ka IPv6 aadress jaguneb eesliiteks (võrg
 IPv6 aadressite osakaal maailmas on aina suurenemas ja on IP-aadressite tulevik.  
 <http://test-ipv6.com/> - lehekülg, kust kontrollida, kas su seadmel on IPv6 aadress. Minu telefonil ja arvutil polbud, aga näitab, et koduvõrgul on IPv6 võimekus olemas.
 
-## 4. osa Võrguprotokollide kihid
+### 4. osa Võrguprotokollide kihid
 
 Protokoll on reeglite kogum, mida arvutid kasutavad andmete võrgu kaudu saatmiseks ja vastuvõtmiseks.  
 Protokoll määrab kasutatava veaavastuskoodi, andmetihendusmeetodi ning viisi, kuidas saatev seade annab teada, et sõnumi edastamine on lõpule jõudnud ning kuidas vastuvõttev seade annab teada, et sõnum on vastu võetud.  
@@ -179,7 +181,7 @@ KATSE 4: `sudo tcpdump port 12345`, teises `nc udacity.com 12345`:
 Tegu väljamõeldud pordinumbriga. Esimeses aknas saatis järjest aeglasema intervalliga [S] lipuga päringuid, aga vastust ei saanud.
 TCP-l on mitmeid sisse-ehitatud ajavõtjaid, mis kontrollivad, et kui soovitud serveriga ühendust mõistliku aja jooksul ei saa, siis saadavad erroriteate (timeout) tagasi vastuseks.
 
-## 5. peatükk Võrguliiklus
+### 5. peatükk Võrguliiklus
 
 Võrgu kiirus ja mõned teisedki omadused mõjutavad kasutajate veebirakenduste kasutuskogemust.
 Reegel on, et kasutajad vihkavad ootamist. Aga andmete liigutamine ühest kohast teise võtab paratamatult aega. ka tulemüürid võivad tekitada jamasid sinu ja kasutaja vahel.  
